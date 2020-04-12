@@ -6,5 +6,5 @@ import com.niit.moviebooking.model.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer , Long> {
 	
-	
+	public Customer findByEmail(String email);
 }

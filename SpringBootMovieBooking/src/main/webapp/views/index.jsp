@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!Doctype html>
 <html lang="en">
 
@@ -17,11 +18,6 @@
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="/resources/static/css/bootstrap.min.css">
-
-
-
-
-
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -44,8 +40,9 @@
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 
-		<a class="navbar-brand" href="#"><img src="/resources/static/images/cinema.png"
-			class="logo" height="50px" width="60"></a>
+		<a class="navbar-brand" href="#"><img
+			src="/resources/static/images/cinema.png" class="logo" height="50px"
+			width="60"></a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarsExampleDefault"
@@ -59,7 +56,7 @@
 				<li class="nav-item active"><a class="nav-link" href="#">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a href="/register" class="nav-link" >Login</a></li>
+				<li class="nav-item"><a href="/register" class="nav-link">Login</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="dropdown01"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Type</a>
@@ -87,8 +84,9 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img class="d-block w-100" height="400px" src="/resources/static/images/1.jpg"
-					alt="First slide" width="400px">
+				<img class="d-block w-100" height="400px"
+					src="/resources/static/images/1.jpg" alt="First slide"
+					width="400px">
 				<div class="carousel-caption d-none d-md-block">
 					<h1>Book Your Movie</h1>
 					<h2>Enjoy Your favourite movies here</h2>
@@ -125,36 +123,30 @@
 
 		<div class="container">
 
-			<!-- Example row of columns -->
-			<div class="row ml-5">
-				<div class="card" style="width: 18rem;">
-					<img class="card-img-top" src="/resources/static/images/first.jpeg" height="400px"
-						width="60px" alt="Card image cap">
-					<div class="card-body">
-						<p class="card-text">Now in Theaters</p>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="card ml-5" style="width: 18rem;">
-						<img class="card-img-top" src="/resources/static/images/second.jpeg" height="400px"
-							width="60px" alt="Card image cap">
-						<div class="card-body">
-							<p class="card-text">Now in theaters</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="card ml-5" style="width: 18rem;">
-							<img class="card-img-top" src="/resources/static/images/third.jpg" height="400px"
-								width="60px" alt="Card image cap">
+			
+			<table>
+				<tr>
+				<c:forEach var="movies" items="${listMovies}">
+					
+					<td><div class="row ml-5">
+						<div class="card" style="width: 18rem;">
+							<img class="card-img-top" src='${movies.posterlink}' 
+								height="400px" width="60px" alt="Card image cap">
 							<div class="card-body">
-								<p class="card-text">Now in theaters</p>
+								<p class="card-text" >${movies.moviename}</p>
 							</div>
 						</div>
 						<hr>
-
+						
 					</div>
-					<!-- /container -->
+					</td>
+					</c:forEach>
+					</tr>
+			</table>
+			
+			
+		</div>
+		<!-- /container -->
 	</main>
 
 	<footer class="pt-4 my-md-5 pt-md-5 border-top">
@@ -204,7 +196,7 @@
 				|| document
 						.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')
 	</script>
-	
+
 
 
 </body>
