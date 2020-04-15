@@ -1,10 +1,16 @@
 package com.niit.moviebooking.model;
 
-import javax.persistence.Column;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +22,10 @@ public class Customer {
 	private Long id;
 	private String firstname;
 	private String password;
+	private String email;
+
+	@OneToMany(mappedBy = "customer",cascade = {CascadeType.ALL})
+	private List<Booking> booking;
 
 	public String getPassword() {
 		return password;
@@ -25,7 +35,6 @@ public class Customer {
 		this.password = password;
 	}
 
-	private String email;
 
 	public Customer() {
 	}

@@ -13,6 +13,10 @@
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Jekyll v3.8.6">
 <title>User| Home</title>
+
+
+
+<!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="/resources/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/static/css/simple-sidebar.css">
 <style>
@@ -58,58 +62,60 @@
 	</nav>
 
 
-	<c:url var="updateLink" value="/edit">
-		<c:param name="id" value="${customer.id}" />
-	</c:url>
+
+
+ <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">${customername}</div>
+            <div class="list-group list-group-flush">
+                <a href="/userDashboard" class="list-group-item list-group-item-action bg-light">Home</a>
+                <a href="/userBookingDetail" class="list-group-item list-group-item-action bg-light">Edit Detail</a>
+                <a href="/userBookingDetail" class="list-group-item list-group-item-action bg-light">Booking Detail</a> 
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <div class="container-fluid" >
+            <h1 class="mt-4" align="Center">Booking Detail</h1>
+            <section class="col-md-6" >
+                <div class="detail" style="width:200%">
+
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th>User Name</th>
+                                <th>Movie Name</th>
+                                <th>Date</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="bookingDetail" items="${bookingDetail}">
+                                <tr>
+                                    <td>${bookingDetail.customer.firstname}</td>
+                                    <td>${bookingDetail.movies.moviename}</td>
+                                    <td>${bookingDetail.bookingDate}</td>
+                                    <td>${bookingDetail.price_movie}</td>
+
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+
+                </div>
+               </section>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+    
 
 
 
 
-	<div class="d-flex" id="wrapper">
-		<!-- Sidebar -->
-		<div class="bg-light border-right" id="sidebar-wrapper">
-			<div class="sidebar-heading">${customername}</div>
-			<div class="list-group list-group-flush">
-				<a href="/userDashboard"
-					class="list-group-item list-group-item-action bg-light">Home</a> <a
-					href="/userBookingDetail"
-					class="list-group-item list-group-item-action bg-light">Edit
-					Detail</a> <a href="/userBookingDetail"
-					class="list-group-item list-group-item-action bg-light">Booking
-					Detail</a>
-			</div>
-		</div>
-		<!-- /#sidebar-wrapper -->
 
-		<div class="container-fluid">
-			<section class="col-md-8 blog-main ">
-				<h3 align="center">Welcome to cineTik</h3>
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>User Name:</th>
-							<td>${customer.firstname}</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Email:</td>
-							<td>${customer.email}</td>
-						</tr>
-						<tr>
-							<td>Password:</td>
-							<td>${customer.password}</td>
-
-						</tr>
-						<tr>
-							<td rowspan="2"><a href='${updateLink}'>edit details</a></td>
-						</tr>
-					</tbody>
-				</table>
-				
-			</section>
-		</div>
-	</div>
 
 
 	<footer class="pt-4 my-md-5 pt-md-5 border-top">
@@ -148,13 +154,8 @@
 					<li><a class="text-muted" href="#">Privacy</a></li>
 					<li><a class="text-muted" href="#">Terms</a></li>
 				</ul>
-
 			</div>
 		</div>
-		<hr>
-		<p align="Center">Cinetik online movie booking ,enjoy your
-			favourites movies near your cinemas,we will help to find the best
-			cinema near you.</p>
 	</footer>
 	<script src="/resources/static/js/jquery.min.js"></script>
 	<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->

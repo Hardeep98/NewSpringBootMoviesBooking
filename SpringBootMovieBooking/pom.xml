@@ -54,6 +54,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- spring-boot-devtools module includes an embedded LiveReload server 
+		that is used to trigger a browser refresh when a resource is changed. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 
 	<build>

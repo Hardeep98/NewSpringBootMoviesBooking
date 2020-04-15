@@ -1,12 +1,17 @@
 package com.niit.moviebooking.model;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -15,10 +20,12 @@ public class Movies {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "movie_id")
+	@Column(name = "movieId")
 	private int id;
 
+	@Column(name="movieName")
 	private String moviename;
+	
 	private String description;
 
 	private Date realesedate;
@@ -29,6 +36,18 @@ public class Movies {
 	private String timing;
 	private double price;
 	private String posterlink;
+	private String movieback;
+	
+	@OneToMany(mappedBy = "movies",cascade= {CascadeType.ALL})
+	private List<Booking> booking;
+	
+	public String getMovieback() {
+		return movieback;
+	}
+
+	public void setMovieback(String movieback) {
+		this.movieback = movieback;
+	}
 
 	/* Getter and setter */
 	public int getId() {

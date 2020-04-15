@@ -18,6 +18,11 @@
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="/resources/static/css/bootstrap.min.css">
+
+
+
+
+
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -53,10 +58,18 @@
 
 		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
+				<li class="nav-item active"><a class="nav-link" href="/">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a href="/register" class="nav-link">Login</a></li>
+				<c:choose>
+					<c:when test="${id >0}">
+						<li class="nav-item"><a href="/userDashboard" class="nav-link">${customername}</a></li>
+					</c:when>
+
+					<c:otherwise> 
+						<li class="nav-item"><a href="/register" class="nav-link">Login</a></li>
+					</c:otherwise>
+			 </c:choose>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="dropdown01"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Type</a>
@@ -65,12 +78,13 @@
 							class="dropdown-item" href="#">Hollywood</a> <a
 							class="dropdown-item" href="#">Pollywood</a>
 					</div></li>
+			</ul >
+			<c:if test="${id>0 }"> 
+			<ul class="nav-item">
+				<li class="nav-item "><a class="nav-link" href="/logout"><button
+							class="btn btn-outline-light">logout</button></a></li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="text" placeholder="Search"
-					aria-label="Search" style="align-items: center;">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
+			</c:if>
 		</div>
 	</nav>
 
@@ -123,28 +137,39 @@
 
 		<div class="container">
 
-			
+
 			<table>
 				<tr>
-				<c:forEach var="movies" items="${listMovies}">
-					
-					<td><div class="row ml-5">
-						<div class="card" style="width: 18rem;">
-							<img class="card-img-top" src='${movies.posterlink}' 
-								height="400px" width="60px" alt="Card image cap">
-							<div class="card-body">
-								<p class="card-text" >${movies.moviename}</p>
-							</div>
-						</div>
-						<hr>
-						
-					</div>
-					</td>
+
+
+					<c:forEach var="movies" items="${listMovies}">
+						<c:url var="moviedetail" value="/movieDeatil">
+							<c:param name="mid" value="${movies.id}" />
+						</c:url>
+						<%-- <c:if test="${movies.id % 3 == 0}">
+					<br/>
+					</c:if> --%>
+
+						<td><a href='${moviedetail}'>
+								<div class="row ml-5">
+									<div class="card" style="width: 18rem;">
+
+										<img class="card-img-top" src="/resources/static/images/${movies.posterlink}"
+											height="400px" width="60px" alt="Card image cap">
+										<div class="card-body">
+											<p class="card-text">${movies.moviename}</p>
+
+										</div>
+									</div>
+									<hr>
+
+								</div>
+						</a></td>
 					</c:forEach>
-					</tr>
+				</tr>
 			</table>
-			
-			
+
+
 		</div>
 		<!-- /container -->
 	</main>
