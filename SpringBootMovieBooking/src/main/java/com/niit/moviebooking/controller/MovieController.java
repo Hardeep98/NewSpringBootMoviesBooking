@@ -83,7 +83,8 @@ public class MovieController {
 	
 
 	@RequestMapping(value = "/BookMovie", method = RequestMethod.POST)
-	public String bookMovie(@ModelAttribute("booking") Booking book) {
+	public String bookMovie(@ModelAttribute("booking") Booking book,Model m) {
+		
 		Customer cust=null;
 		int mid = (Integer.parseInt(req.getSession().getAttribute("sMovieId").toString()));
 		int Uid = 0;
@@ -100,12 +101,13 @@ public class MovieController {
 			book.setNumberOfTickets(1);
 			book.setPaymentstatus(1);
 			book.setCustomer(cust);
+			m.addAttribute("price",price);
 			
 			book.setBookingDate(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
 //			System.out.println(book.getBooking_id() + " \t" + book.getCustomerId() + " cust id is  " + Uid
 //					+ " \n price " + book.getPrice_movie() + " \n" + book.getBookingDate());
 			bs.save(book);
-			return "redirect:/";
+			return "redirect:/pay";
 		} else if (Uid == 0) {
 			return "redirect:/register";
 		}
