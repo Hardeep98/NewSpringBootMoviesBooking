@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.niit.moviebooking.model.Booking;
 
 
-
-public interface BookMovieRepository extends JpaRepository<Booking,Integer> {
+public interface BookMovieRepository extends JpaRepository<Booking,Long> {
 	public List<Booking> findAllBycustomerId(Long id);
+	
 }

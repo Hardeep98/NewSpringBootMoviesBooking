@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="/resources/static/css/seat.css">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="/jQuery-Seat-Charts/jquery.seat-charts.js"></script>
+<script src="/resources/static/js/jquery.min.js"></script>
+<script src="/resources/static/js/jquery.seat-charts.js"></script>
+<script src="/resources/static/js/seat.js" ></script>
 
 <body>
     <div class="demo">
@@ -26,5 +27,3 @@
 </body>
 
 </html>
-<script src="seat.js">
-</script>

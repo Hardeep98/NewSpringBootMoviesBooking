@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.moviebooking.model.Booking;
 import com.niit.moviebooking.model.Customer;
-
 import com.niit.moviebooking.services.BookingService;
 import com.niit.moviebooking.services.CustomerService;
 import com.niit.moviebooking.services.LoginService;
@@ -41,8 +40,40 @@ public class CustomerController {
 	private HttpServletRequest req;
 	
 	@RequestMapping("/register")
-	public String showForms() {
+	public String showForms(Model m) {
+		
 		return "register-forms";
+	}
+	
+	@RequestMapping("/cancelticketPage")
+	public ModelAndView cancelticket(Model model) {
+		Long Uid;
+		ModelAndView mav = null;
+		if(req.getSession().getAttribute("Uid")!=null)
+		{
+			Uid = Long.parseLong(req.getSession().getAttribute("Uid").toString());
+			Customer cust = logService.get(Uid);
+			model.addAttribute("customername", cust.getFirstname());
+			System.out.println(cust.getFirstname());
+			
+		}	
+		else 
+		{
+			mav=new ModelAndView("register-forms");
+			return mav;
+		}
+		List<Booking> b=bookSer.listAllByUserID(Uid);
+		mav = new ModelAndView("CancelTicket");
+		mav.addObject("bookingDetail",b);
+		 
+		return mav;
+	}
+	@RequestMapping("/cancelticket")
+	public String cancelTicket(@RequestParam("bookid") Long id) {
+		Booking b=bookSer.get(id);
+		b.setPaymentstatus(0);
+		bookSer.save(b);
+		return "redirect:/cancelticketPage";
 	}
 	
 	@RequestMapping("/edit")
@@ -55,9 +86,10 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("customer") Customer customer) {
+	public String saveProduct(@ModelAttribute("customer") Customer customer,Model m) {
 		proser.save(customer);
-		return "userHome";
+		m.addAttribute("callFunc",1);
+		return "register";
 
 	}
 
@@ -110,7 +142,7 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/loginUser")
-	public ModelAndView loginCustomer(HttpServletRequest req, @ModelAttribute("customer") Customer cust) {
+	public ModelAndView loginCustomer(HttpServletRequest req, @ModelAttribute("customer") Customer cust,Model m) {
 		
 		String email = req.getParameter("email");
 		String pass = req.getParameter("password");
@@ -134,6 +166,7 @@ public class CustomerController {
 		}
 
 		else {
+			m.addAttribute("report",1);
 			mav = new ModelAndView("register-forms");
 			mav.addObject("error", "Invalid Username or Password");
 		}

@@ -12,8 +12,29 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/static/css/basic_Edit.css" />
 </head>
+<script>
+	function validate(animatedform) {
+		password1 = document.getElementById("passwordsign").value;
+		password2 = document.getElementById("passwordsign-confirm").value;
+
+		if (password1 == '')
+			alert("Please enter Password");
+
+		else if (password2 == '')
+			alert("Please enter confirm password");
+
+		else if (password1 != password2) {
+			alert("Password did not match: Please try again...")
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+</script>
 <body id="registeration">
 	<div class="bgimg"></div>
+
 	<div class="container">
 		<section>
 			<div id="container_demo">
@@ -21,6 +42,7 @@
 					id="tologin"></a>
 				<div id="wrapper">
 					<div id="login" class="animate form">
+						<c:if test="${callFunc == 1}"><Script>alert("Register Successfull Please Enter Credentials for login")</Script></c:if>
 						<form:form action="/loginUser" autocomplete="on" method="post"
 							modelAttribute="customer">
 							<h1>Log in</h1>
@@ -35,7 +57,7 @@
 									Your password </label> <input id="password" name="password"
 									required="required" type="password" placeholder="eg. X8df!90EO" />
 							</p>
-						<<!-- p class="keeplogin">
+						<!--< p class="keeplogin">
 							<input type="checkbox" name="loginkeeping" id="loginkeeping"
 								value="loginkeeping" /> <label for="loginkeeping">Keep
 								me logged in</label>
@@ -67,13 +89,13 @@
 							</p>
 							<p>
 								<label for="passwordsignup" class="youpasswd" data-icon="p">Your
-									password </label> <input id="passwordsignup" name="password"
+									password </label> <input id="passwordsign" name="password"
 									required="required" type="password" placeholder="eg. X8df!90EO" />
 							</p>
 							<p>
 								<label for="passwordsignup_confirm" class="youpasswd"
 									data-icon="p">Please confirm your password </label> <input
-									id="passwordsignup_confirm" name="cpassword"
+									id="passwordsign-confirm" name="cpassword"
 									required="required" type="password" placeholder="eg. X8df!90EO" />
 							</p>
 							<p class="signin button">
@@ -89,7 +111,7 @@
 				</div>
 			</div>
 		</section>
-		<div style="color: red">${error}</div>
+		<div style="color: red"><c:if test="${report ==1 }"><script>alert("Error Id or password is not Correct")</script></c:if></div>
 	</div>
 </body>
 </html>

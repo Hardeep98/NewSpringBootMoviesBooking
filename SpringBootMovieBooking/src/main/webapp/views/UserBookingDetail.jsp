@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!Doctype html>
 <html lang="en">
@@ -33,9 +35,9 @@
 	</c:url>
 	<nav class="navbar navbar-expand-md navbar-dark  bg-dark">
 
-		<a class="navbar-brand" href="/"><img
-			src="/resources/static/images/cinema.png" class="logo" height="50px"
-			width="60"></a>
+		<a class="navbar-brand" href="#"><img src="/resources/static/images/cine4.png" class="logo" height="50px"
+			width="100px"></a>
+
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarsExampleDefault"
@@ -49,12 +51,30 @@
 
 				<li class="nav-item "><a class="nav-link" href="${home}">Home
 				</a></li>
+				<form:form action="/serchMovie" autocomplete="on" method="post"
+					modelAttribute="SerchMovie">
+					<li class="nav-item active"><div
+							style="margin-left: 80%; width: 250%" class="input-group">
 
-				<li class="nav-item active" Style="align-content: center;"><a
-					class="nav-link " href="/#">${customer.firstname} </a></li>
+							<input type="text" style="height: 10%; width: 50%"
+								name="movieName" class="form-control"
+								placeholder="Search For Movie">
+							<div class="input-group-append">
+								<Button type="submit" value="" class="btn btn-secondary"
+									type="button">
+									<span class="glyphicon glyphicon-search"></span>
+								</Button>
+							</div>
+
+						</div></li>
+				</form:form>
+
+
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+			<li class="nav-item active" Style="align-content: center;"><a
+					class="nav-link " href="/#">${customer.firstname} </a></li>
 				<li class="nav-item "><a class="nav-link" href="/logout"><button
 							class="btn btn-outline-light">logout</button></a></li>
 			</ul>
@@ -71,7 +91,7 @@
             <div class="sidebar-heading">${customername}</div>
             <div class="list-group list-group-flush">
                 <a href="/userDashboard" class="list-group-item list-group-item-action bg-light">Home</a>
-                <a href="/userBookingDetail" class="list-group-item list-group-item-action bg-light">Edit Detail</a>
+                <a href="/cancelticketPage" class="list-group-item list-group-item-action bg-light">Cancel Ticket</a>
                 <a href="/userBookingDetail" class="list-group-item list-group-item-action bg-light">Booking Detail</a> 
             </div>
         </div>

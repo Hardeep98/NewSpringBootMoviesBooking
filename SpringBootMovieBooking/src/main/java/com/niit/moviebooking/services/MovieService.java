@@ -30,4 +30,7 @@ public class MovieService {
 	public void delete(int id) {
 		mRepo.deleteById(id);
 	}
+	public List<Movies> findByName(String name){
+		return mRepo.fetchMovieName(name);
+	}
 }

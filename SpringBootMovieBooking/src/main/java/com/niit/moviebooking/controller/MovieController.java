@@ -58,7 +58,12 @@ public class MovieController {
 
 		return "index";
 	}
+	
 
+	@RequestMapping("/selectSeat")
+	public String selectSeat() {
+		return "SelectSeat";
+	}
 	@RequestMapping("/movieDeatil")
 	public ModelAndView showMovieDetail(@RequestParam("mid") int id, Model model) {
 		int Uid = 0;
@@ -80,7 +85,27 @@ public class MovieController {
 		return MovieDetail;
 	}
 	
-	
+	@RequestMapping("/serchMovie")
+	public ModelAndView serchMovie(HttpServletRequest req,Model m)
+	{
+		int Uid = 0;
+		if (req.getSession().getAttribute("Uid") != null) {
+			Uid = Integer.parseInt(req.getSession().getAttribute("Uid").toString());
+			if (Uid > 0) {
+				Customer cust = logService.get(Uid);
+				m.addAttribute("id", cust.getId());
+				m.addAttribute("customername", cust.getFirstname());
+
+			}
+		}
+		String name=req.getParameter("movieName");
+		System.out.println("name is "+name);
+		List<Movies> movie=mService.findByName(name);
+		
+		ModelAndView mv=new ModelAndView("serchResult");
+		mv.addObject("movieList",movie);
+		return mv;
+	}
 
 	@RequestMapping(value = "/BookMovie", method = RequestMethod.POST)
 	public String bookMovie(@ModelAttribute("booking") Booking book,Model m) {

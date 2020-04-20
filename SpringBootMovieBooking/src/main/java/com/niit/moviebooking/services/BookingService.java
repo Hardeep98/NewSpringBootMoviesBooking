@@ -26,10 +26,10 @@ public class BookingService {
 	public void save(Booking book) {
 		bMrepo.save(book);
 	}
-	public Booking get(int id) {
+	public Booking get(Long id) {
 		return bMrepo.findById(id).get();
 	}
-	public void delete(int id) {
+	public void delete(Long id) {
 		bMrepo.deleteById(id);
 	}
 

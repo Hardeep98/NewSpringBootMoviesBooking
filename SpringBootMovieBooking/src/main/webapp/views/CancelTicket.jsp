@@ -14,6 +14,10 @@
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Jekyll v3.8.6">
 <title>User| Home</title>
+
+
+
+<!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="/resources/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/static/css/simple-sidebar.css">
 <style>
@@ -30,9 +34,9 @@
 	</c:url>
 	<nav class="navbar navbar-expand-md navbar-dark  bg-dark">
 
-		<a class="navbar-brand" href="/"><img src="/resources/static/images/cine4.png" class="logo" height="50px"
-			width="100px"></a>
-
+		<a class="navbar-brand" href="/"><img
+			src="/resources/static/images/cinema.png" class="logo" height="50px"
+			width="60"></a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarsExampleDefault"
@@ -47,41 +51,38 @@
 				<li class="nav-item "><a class="nav-link" href="${home}">Home
 				</a></li>
 				<form:form action="/serchMovie" autocomplete="on" method="post"
-							modelAttribute="SerchMovie">
-				<li class="nav-item active"><div
-						style="margin-left: 80%; width: 250%" class="input-group">
-						
-							<input type="text" style="height: 10%; width: 50%" name="movieName"
-								class="form-control" placeholder="Search For Movie">
+					modelAttribute="SerchMovie">
+					<li class="nav-item active"><div
+							style="margin-left: 80%; width: 250%" class="input-group">
+
+							<input type="text" style="height: 10%; width: 50%"
+								name="movieName" class="form-control"
+								placeholder="Search For Movie">
 							<div class="input-group-append">
 								<Button type="submit" value="" class="btn btn-secondary"
-										type="button">
-										<span class="glyphicon glyphicon-search"></span>
-									</Button>
+									type="button">
+									<span class="glyphicon glyphicon-search"></span>
+								</Button>
 							</div>
-						 
-					</div></li></form:form> 
-				
 
+						</div></li>
+				</form:form>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+
 				<li class="nav-item active" Style="align-content: center;"><a
-					class="nav-link " href="/userDashboard">${customer.firstname} </a></li>
-				<li class="nav-item " style="list-style: none;"><a class="nav-link" href="/logout"><button
+					class="nav-link " href="/#">${customer.firstname} </a></li>
+				<li class="nav-item "><a class="nav-link" href="/logout"><button
 							class="btn btn-outline-light">logout</button></a></li>
 			</ul>
 		</div>
 	</nav>
 
 
-	<c:url var="updateLink" value="/edit">
-		<c:param name="id" value="${customer.id}" />
-	</c:url>
-
-
 
 
 	<div class="d-flex" id="wrapper">
+
 		<!-- Sidebar -->
 		<div class="bg-light border-right" id="sidebar-wrapper">
 			<div class="sidebar-heading">${customername}</div>
@@ -89,8 +90,8 @@
 				<a href="/userDashboard"
 					class="list-group-item list-group-item-action bg-light">Home</a> <a
 					href="/cancelticketPage"
-					class="list-group-item list-group-item-action bg-light">Cancel Ticket
-					Detail</a> <a href="/userBookingDetail"
+					class="list-group-item list-group-item-action bg-light">Cancel
+					Ticket</a> <a href="/userBookingDetail"
 					class="list-group-item list-group-item-action bg-light">Booking
 					Detail</a>
 			</div>
@@ -98,34 +99,72 @@
 		<!-- /#sidebar-wrapper -->
 
 		<div class="container-fluid">
-			<section class="col-md-8 blog-main ">
-				<h3 align="center">Welcome to cineTik</h3>
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>User Name:</th>
-							<td>${customer.firstname}</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Email:</td>
-							<td>${customer.email}</td>
-						</tr>
-						<tr>
-							<td>Password:</td>
-							<td>${customer.password}</td>
+			<h1 class="mt-4" align="Center">Booking Detail</h1>
+			<section class="col-md-6">
+				<div class="detail" style="width: 200%">
 
-						</tr>
-						<tr>
-							<td rowspan="2"><a href='${updateLink}'>edit details</a></td>
-						</tr>
-					</tbody>
-				</table>
-				
+					<table class="table ">
+						<thead>
+							<tr>
+
+								<th>Movie Name</th>
+								<th>Date</th>
+								<th>Price</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="bookingDetail" items="${bookingDetail}">
+								<c:url var="cancelTicket" value="/cancelticket">
+									<c:param name="bookid" value="${bookingDetail.booking_id}" />
+								</c:url>
+								<c:choose>
+									<c:when test="${bookingDetail.paymentstatus==1 }">
+										<tr class="table-success">
+									</c:when>
+									<c:when test="${bookingDetail.paymentstatus==0 }">
+										<tr class="table-warning">
+									</c:when>
+									<c:otherwise>
+										<tr class="table-danger">
+									</c:otherwise>
+								</c:choose>
+
+								<td>${bookingDetail.movies.moviename}</td>
+								<td>${bookingDetail.bookingDate}</td>
+								<td>${bookingDetail.price_movie}</td>
+								<td class="table-warning"><c:choose>
+										<c:when test="${bookingDetail.paymentstatus==0 }">
+											<button class="btn btn-warning" disabled="disabled">Request
+												send Pending</button>
+										</c:when>
+										<c:when test="${bookingDetail.paymentstatus==1 }">
+											<a href="${cancelTicket}"><button class="btn btn-danger">Cancel
+													Ticket</button></a>
+										</c:when>
+
+										<c:otherwise>
+											<span style="color: gray"> Ticket Cancelled</span>
+										</c:otherwise>
+									</c:choose></td>
+
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+
+				</div>
 			</section>
 		</div>
 	</div>
+	<!-- /#page-content-wrapper -->
+
+
+
+
+
+
+
 
 
 	<footer class="pt-4 my-md-5 pt-md-5 border-top">
@@ -164,13 +203,8 @@
 					<li><a class="text-muted" href="#">Privacy</a></li>
 					<li><a class="text-muted" href="#">Terms</a></li>
 				</ul>
-
 			</div>
 		</div>
-		<hr>
-		<p align="Center">Cinetik online movie booking ,enjoy your
-			favourites movies near your cinemas,we will help to find the best
-			cinema near you.</p>
 	</footer>
 	<script src="/resources/static/js/jquery.min.js"></script>
 	<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
