@@ -23,24 +23,6 @@
 
 
 
-
-<style>
-.bd-placeholder-img {
-	font-size: 1.125rem;
-	text-anchor: middle;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-@media ( min-width : 768px) {
-	.bd-placeholder-img-lg {
-		font-size: 3.5rem;
-	}
-}
-</style>
-
 </head>
 
 <body>
@@ -106,11 +88,10 @@
 		<div class="carousel-inner">
 			<div class="carousel-item active">
 				<img class="d-block w-100" height="400px"
-					src="/resources/static/images/1.jpg" alt="First slide"
+					src="/resources/static/images/fast.jpg" alt="First slide"
 					width="400px">
 				<div class="carousel-caption d-none d-md-block">
-					<h1>Book Your Movie</h1>
-					<h2>Enjoy Your favourite movies here</h2>
+					<h1>Fast and furious</h1>
 				</div>
 			</div>
 			<div class="carousel-item">
@@ -118,7 +99,7 @@
 					src="/resources/static/images/2.jpg" alt="Second slide">
 				<div class="carousel-caption d-none d-md-block">
 					<h1>Book Your Movie</h1>
-					<h2>Enjoy Your favourite movies here</h2>
+					
 				</div>
 			</div>
 			<div class="carousel-item">
@@ -126,7 +107,7 @@
 					src="/resources/static/images/3.jpeg" alt="Third slide">
 				<div class="carousel-caption d-none d-md-block">
 					<h1>Book your movie</h1>
-					<h2>Enjoy Your favourite movies here</h2>
+					
 				</div>
 			</div>
 		</div>
@@ -145,7 +126,7 @@
 
 		<div class="container">
 
-
+			<h3 align="center">Today's hits</h3>
 			<table>
 				<tr>
 
@@ -156,71 +137,71 @@
 						</c:url>
 						<c:set var="count" value="${count + 1}" scope="page" />
 
-					<td><a href='${moviedetail}'>
-							<div class="row ml-5">
-								<div class="card" style="width: 18rem;">
+						<td><a href='${moviedetail}'>
+								<div class="row ml-5">
+									<div class="card" style="width: 18rem;">
 
-									<img class="card-img-top"
-										src="/resources/static/images/${movies.posterlink}"
-										height="300px" width="20px" alt="Card image cap">
-									<div class="card-body">
-										<p class="card-text">${movies.moviename}</p>
+										<img class="card-img-top"
+											src="/resources/static/images/${movies.posterlink}"
+											height="300px" width="20px" alt="Card image cap">
+										<div class="card-body">
+											<p class="card-text">${movies.moviename}</p>
 
+										</div>
 									</div>
-								</div>
-								<hr>
 
-							</div>
-					</a></td>
+
+								</div>
+						</a></td>
 
 						<c:if test="${count % 3 == 0}">
-					</tr>
-						<tr style="margin-top:5%">
+				</tr>
+				<tr style="margin-top: 5%">
 					</c:if>
 					</c:forEach>
 				</tr>
 			</table>
-
+			
 
 		</div>
 		<!-- /container -->
 	</main>
 
-	<footer class="pt-4 my-md-5 pt-md-5 border-top">
-		<div class="row">
+	<footer class="pt-4">
+
+		<div class="row"
+			style="color: white; background-color: #1d1e1f">
 			<div class="col-12 col-md">
-				<img class="mb-2" src="/docs/4.4/assets/brand/bootstrap-solid.svg"
-					alt="" width="24" height="24">
+				<img src="/resources/static/images/cine4.png" style="margin-left:25%;margin-top:5%" class="logo"
+					height="50px" width="100px">
 
 			</div>
 			<div class="col-6 col-md">
-				<h5>Best lnguage Genre Movies</h5>
+				<br/>
+				<h5>Best language Genre Movies</h5>
 				<ul class="list-unstyled text-small">
 					<li><a class="text-muted" href="#">Bollywood Movie</a></li>
 					<li><a class="text-muted" href="#">Hindi comedy movie</a></li>
-					<li><a class="text-muted" href="#">English Comedy movie</a></li>
-					<li><a class="text-muted" href="#">English Action Movie</a></li>
-					<li><a class="text-muted" href="#">Punjabi comedy movie</a></li>
-					<li><a class="text-muted" href="#">Hindi Action movie</a></li>
 				</ul>
 			</div>
+			<br/>
 			<div class="col-6 col-md">
+				<br/>
 				<h5>Movies Cinema Celibrity</h5>
 				<ul class="list-unstyled text-small">
 					<li><a class="text-muted" href="#">Latest Upcoming Movies</a></li>
 					<li><a class="text-muted" href="#">Best now Showing Movies</a></li>
-					<li><a class="text-muted" href="#">Movies stars and
-							celibrity</a></li>
-					<li><a class="text-muted" href="#">Best Cinemas</a></li>
+
 				</ul>
 			</div>
+			<br/>
 			<div class="col-6 col-md">
+				<br/>
 				<h5>About</h5>
 				<ul class="list-unstyled text-small">
 					<li><a class="text-muted" href="#">Team</a></li>
 					<li><a class="text-muted" href="#">Locations</a></li>
-					<li><a class="text-muted" href="#">Privacy</a></li>
-					<li><a class="text-muted" href="#">Terms</a></li>
+
 				</ul>
 			</div>
 		</div>
@@ -233,9 +214,8 @@
 				|| document
 						.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')
 	</script>
-
-
-
+	<c:if test="${booked==1}">alert("Booked Successful check in your account");</c:if>
+	${booked }
 </body>
 
 </html>

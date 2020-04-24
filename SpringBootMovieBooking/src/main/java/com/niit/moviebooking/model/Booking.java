@@ -22,6 +22,18 @@ public class Booking {
 	private long booking_id;
 
 	private Date bookingDate;
+	public Booking() {}
+	public Booking(long booking_id, Date bookingDate, int price_movie, int paymentstatus, int numberOfTickets,
+			Customer customer, Movies movies) {
+		super();
+		this.booking_id = booking_id;
+		this.bookingDate = bookingDate;
+		this.price_movie = price_movie;
+		this.paymentstatus = paymentstatus;
+		this.numberOfTickets = numberOfTickets;
+		this.customer = customer;
+		this.movies = movies;
+	}
 
 	private int price_movie;
 

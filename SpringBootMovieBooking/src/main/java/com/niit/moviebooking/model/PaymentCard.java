@@ -22,6 +22,44 @@ public class PaymentCard {
 	private int cvv;
 	private Date expirayDate;
 	private String nameOnCard;
+	private int totalNumberOfTickets;
+	private Date movieDate;
+	private int totalPayment;
+	
+	public PaymentCard() {}
+	public PaymentCard(int id, int movie_id, int customerId, Date payment_date, String cardNumber, int cvv,
+			Date expirayDate, String nameOnCard, int totalNumberOfTickets, Date movieDate, int totalPayment) {
+		super();
+		this.id = id;
+		this.movie_id = movie_id;
+		this.customerId = customerId;
+		this.payment_date = payment_date;
+		this.cardNumber = cardNumber;
+		this.cvv = cvv;
+		this.expirayDate = expirayDate;
+		this.nameOnCard = nameOnCard;
+		this.totalNumberOfTickets = totalNumberOfTickets;
+		this.movieDate = movieDate;
+		this.totalPayment = totalPayment;
+	}
+	public int getTotalPayment() {
+		return totalPayment;
+	}
+	public void setTotalPayment(int totalPayment) {
+		this.totalPayment = totalPayment;
+	}
+	public Date getMovieDate() {
+		return movieDate;
+	}
+	public void setMovieDate(Date movieDate) {
+		this.movieDate = movieDate;
+	}
+	public int getTotalNumberOfTickets() {
+		return totalNumberOfTickets;
+	}
+	public void setTotalNumberOfTickets(int totalNumberOfTickets) {
+		this.totalNumberOfTickets = totalNumberOfTickets;
+	}
 	public int getId() {
 		return id;
 	}

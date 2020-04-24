@@ -37,7 +37,23 @@ public class Movies {
 	private double price;
 	private String posterlink;
 	private String movieback;
-	
+	public Movies() {}
+	public Movies(int id, String moviename, String description, Date realesedate, Date enddate, String starcast,
+			String timing, double price, String posterlink, String movieback, List<Booking> booking) {
+		super();
+		this.id = id;
+		this.moviename = moviename;
+		this.description = description;
+		this.realesedate = realesedate;
+		this.enddate = enddate;
+		this.starcast = starcast;
+		this.timing = timing;
+		this.price = price;
+		this.posterlink = posterlink;
+		this.movieback = movieback;
+		this.booking = booking;
+	}
+
 	@OneToMany(mappedBy = "movies",cascade= {CascadeType.ALL})
 	private List<Booking> booking;
 	

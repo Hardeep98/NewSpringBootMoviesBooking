@@ -99,7 +99,7 @@
 
 		<div class="container">
 
-
+			<h3 align="center">search Result</h3>
 			<table>
 				<tr>
 
@@ -137,55 +137,45 @@
 		<!-- /container -->
 	</main>
 
-	<footer class="pt-4 my-md-5 pt-md-5 border-top">
-		<div class="row">
+	<footer class="pt-4">
+
+		<div class="row"
+			style="color: white; background-color: #1d1e1f">
 			<div class="col-12 col-md">
-				<img class="mb-2" src="/docs/4.4/assets/brand/bootstrap-solid.svg"
-					alt="" width="24" height="24">
+				<img src="/resources/static/images/cine4.png" style="margin-left:25%;margin-top:5%" class="logo"
+					height="50px" width="100px">
 
 			</div>
 			<div class="col-6 col-md">
-				<h5>Best lnguage Genre Movies</h5>
+				<br/>
+				<h5>Best language Genre Movies</h5>
 				<ul class="list-unstyled text-small">
 					<li><a class="text-muted" href="#">Bollywood Movie</a></li>
 					<li><a class="text-muted" href="#">Hindi comedy movie</a></li>
-					<li><a class="text-muted" href="#">English Comedy movie</a></li>
-					<li><a class="text-muted" href="#">English Action Movie</a></li>
-					<li><a class="text-muted" href="#">Punjabi comedy movie</a></li>
-					<li><a class="text-muted" href="#">Hindi Action movie</a></li>
 				</ul>
 			</div>
+			<br/>
 			<div class="col-6 col-md">
+				<br/>
 				<h5>Movies Cinema Celibrity</h5>
 				<ul class="list-unstyled text-small">
 					<li><a class="text-muted" href="#">Latest Upcoming Movies</a></li>
 					<li><a class="text-muted" href="#">Best now Showing Movies</a></li>
-					<li><a class="text-muted" href="#">Movies stars and
-							celibrity</a></li>
-					<li><a class="text-muted" href="#">Best Cinemas</a></li>
+
 				</ul>
 			</div>
+			<br/>
 			<div class="col-6 col-md">
+				<br/>
 				<h5>About</h5>
 				<ul class="list-unstyled text-small">
 					<li><a class="text-muted" href="#">Team</a></li>
 					<li><a class="text-muted" href="#">Locations</a></li>
-					<li><a class="text-muted" href="#">Privacy</a></li>
-					<li><a class="text-muted" href="#">Terms</a></li>
+
 				</ul>
 			</div>
 		</div>
 	</footer>
-	<script src="/resources/static/js/jquery.min.js"></script>
-	<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
-	<script src="/resources/static/js/bootstrap.min.js"></script>
-	<script>
-		window.jQuery
-				|| document
-						.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')
-	</script>
-
-
 
 </body>
 

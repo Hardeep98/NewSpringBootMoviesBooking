@@ -46,7 +46,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/cancelticketPage")
-	public ModelAndView cancelticket(Model model) {
+	public ModelAndView cancelTicketPage(Model model) {
 		Long Uid;
 		ModelAndView mav = null;
 		if(req.getSession().getAttribute("Uid")!=null)
@@ -54,7 +54,7 @@ public class CustomerController {
 			Uid = Long.parseLong(req.getSession().getAttribute("Uid").toString());
 			Customer cust = logService.get(Uid);
 			model.addAttribute("customername", cust.getFirstname());
-			System.out.println(cust.getFirstname());
+			
 			
 		}	
 		else 
@@ -77,19 +77,18 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/edit")
-	public ModelAndView showEditProductPage(@RequestParam("id") long id) {
+	public ModelAndView showEditUserPage(@RequestParam("id") long id) {
 		ModelAndView userDetail = new ModelAndView("updateUser");
 		Customer cust = logService.get(id);
-		System.out.println(cust.getFirstname());
 		userDetail.addObject("customer", cust);
 		return userDetail;
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("customer") Customer customer,Model m) {
+	public String saveUser(@ModelAttribute("customer") Customer customer,Model m) {
 		proser.save(customer);
 		m.addAttribute("callFunc",1);
-		return "register";
+		return "register-forms";
 
 	}
 
@@ -117,6 +116,7 @@ public class CustomerController {
 	
 	@RequestMapping("/userBookingDetail")
 	public ModelAndView viewUserDetail(Model model) {
+		
 		Long Uid;
 		ModelAndView mav = null;
 		if(req.getSession().getAttribute("Uid")!=null)
@@ -124,7 +124,7 @@ public class CustomerController {
 			Uid = Long.parseLong(req.getSession().getAttribute("Uid").toString());
 			Customer cust = logService.get(Uid);
 			model.addAttribute("customername", cust.getFirstname());
-			System.out.println(cust.getFirstname());
+	
 			
 		
 		}	

@@ -17,7 +17,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,8 +27,7 @@ import com.niit.moviebooking.services.BookingService;
 import com.niit.moviebooking.services.CustomerService;
 import com.niit.moviebooking.services.LoginService;
 
-@SpringBootTest
-class SpringBootMovieBookingApplicationTests {
+public class LoginController {
 
 	@InjectMocks
 	CustomerController cust;
@@ -90,7 +88,7 @@ class SpringBootMovieBookingApplicationTests {
 	}
 	
 	
-	/*@Test 
+	@Test 
 	public void showEditUserPageTest() {
 		Customer cust1=new Customer(1L, "Hardeep Singh", "1234", "hardeepsinghdahion",lBook);
 		when(loginSer.get(1L)).thenReturn(cust1);
@@ -99,19 +97,19 @@ class SpringBootMovieBookingApplicationTests {
 		assertEquals("updateUser",mav.getViewName());
 		
 		
-	}*/
-	
-	@Test 
-	public void showCancelTicketPageTest() {
-		HttpSession session = mock(HttpSession.class);
-		when(req.getSession()).thenReturn(session);
-		when(req.getSession().getAttribute("Uid")).thenReturn(1L);
-//		when(lBook).thenReturn(bkSer.listAllByUserID(1L));
-		mav = new ModelAndView("CancelTicket");
-		//assertEquals(lBook,mav.getModel().get("bookingDetail"));
-		assertEquals(mav,cust.cancelTicketPage(model) );
-		
 	}
+	
+//	@Test 
+//	public void showCancelTicketPageTest() {
+//		HttpSession session = mock(HttpSession.class);
+//		when(req.getSession()).thenReturn(session);
+//		when(req.getSession().getAttribute("Uid")).thenReturn(1L);
+////		when(lBook).thenReturn(bkSer.listAllByUserID(1L));
+//		mav = new ModelAndView("CancelTicket");
+//		//assertEquals(lBook,mav.getModel().get("bookingDetail"));
+//		assertEquals(mav,cust.cancelTicketPage(model) );
+//		
+//	}
 	@Test
 	public void addUserTest() {
 		Customer cust1 = new Customer();
@@ -152,5 +150,7 @@ class SpringBootMovieBookingApplicationTests {
 		when(req.getSession()).thenReturn(ses);
 		assertEquals(cust.logout(req), "redirect:/");
 	}
+
+
 
 }

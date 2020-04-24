@@ -129,8 +129,7 @@ public class MovieController {
 			m.addAttribute("price",price);
 			
 			book.setBookingDate(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
-//			System.out.println(book.getBooking_id() + " \t" + book.getCustomerId() + " cust id is  " + Uid
-//					+ " \n price " + book.getPrice_movie() + " \n" + book.getBookingDate());
+		
 			bs.save(book);
 			return "redirect:/pay";
 		} else if (Uid == 0) {
